@@ -20,7 +20,7 @@ define KernelPackage/qca-nss-crypto
 	SECTION:=kernel
 	CATEGORY:=Kernel modules
 	SUBMENU:=Cryptographic API modules
-	DEPENDS:=@(TARGET_qualcommax||TARGET_ipq806x) \
+	DEPENDS:=@(TARGET_ipq806x||TARGET_qualcommax||TARGET_ipq50xx||TARGET_ipq50xx_32) \
 		+kmod-qca-nss-drv \
 		+@NSS_DRV_CRYPTO_ENABLE \
 		+TARGET_qualcommax_ipq807x:nss-eip-firmware \
@@ -40,7 +40,7 @@ endef
 ifneq ($(CONFIG_PACKAGE_kmod-qca-nss-crypto),)
 # v1.0 is for Akronite
 # v2.0 is for Hawkeye/Cypress/Maple
-ifneq (, $(findstring $(CONFIG_TARGET_SUBTARGET), "ipq807x" "ipq60xx" "ipq50xx"))
+ifneq (, $(findstring $(CONFIG_TARGET_SUBTARGET), "ipq807x" "ipq60xx" "ipq50xx" "ipq50xx_32"))
 NSS_CRYPTO_DIR:=v2.0
 else
 NSS_CRYPTO_DIR:=v1.0

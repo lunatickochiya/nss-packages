@@ -45,7 +45,9 @@ define Package/nss-firmware
 $(call Package/nss-firmware-common,$(1))
 	DEPENDS+= +TARGET_qualcommax_ipq807x:nss-firmware-ipq807x \
 		  +TARGET_qualcommax_ipq60xx:nss-firmware-ipq60xx \
-		  +TARGET_qualcommax_ipq50xx:nss-firmware-ipq50xx
+		  +TARGET_qualcommax_ipq50xx:nss-firmware-ipq50xx \
+		  +TARGET_qualcommax_ipq50xx_32:nss-firmware-ipq50xx \
+		  +TARGET_ipq50xx:nss-firmware-ipq50xx
 endef
 
 define Package/nss-firmware-ipq807x

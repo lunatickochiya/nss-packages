@@ -79,7 +79,7 @@ define KernelPackage/qca-nss-drv
   SECTION:=kernel
   CATEGORY:=Kernel modules
   SUBMENU:=Network Devices
-  DEPENDS:=@(TARGET_ipq806x||TARGET_qualcommax) \
+  DEPENDS:=@(TARGET_ipq806x||TARGET_qualcommax||TARGET_ipq50xx||TARGET_ipq50xx_32) \
   				 +TARGET_qualcommax:kmod-qca-nss-dp \
   				 +TARGET_qualcommax:nss-firmware
   TITLE:=Kernel driver for NSS (core driver)
@@ -122,12 +122,15 @@ else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq60xx")
 else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx")
   SOC="ipq50xx_64"
   subtarget:=$(CONFIG_TARGET_SUBTARGET)
+else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx_32")
+  SOC="ipq50xx_32"
+  subtarget:=$(CONFIG_TARGET_SUBTARGET)
 endif
 
 define Build/InstallDev
 	mkdir -p $(1)/usr/include/qca-nss-drv
 	$(CP) $(PKG_BUILD_DIR)/exports/* $(1)/usr/include/qca-nss-drv/
-ifneq (, $(findstring $(subtarget), "ipq807x" "ipq807x_64" "ipq60xx" "ipq60xx_64" "ipq50xx" "ipq50xx_64"))
+ifneq (, $(findstring $(subtarget), "ipq807x" "ipq807x_64" "ipq60xx" "ipq60xx_64" "ipq50xx" "ipq50xx_64" "ipq50xx_32"))
 	$(RM) $(1)/usr/include/qca-nss-drv/nss_ipsecmgr.h
 endif
 endef

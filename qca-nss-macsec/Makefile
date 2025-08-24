@@ -20,7 +20,7 @@ define KernelPackage/qca-nss-macsec
   SECTION:=kernel
   CATEGORY:=Kernel modules
   SUBMENU:=Network Devices
-  DEPENDS:=@(TARGET_qualcommax_ipq807x||TARGET_ipq60xx) \
+  DEPENDS:=@(TARGET_ipq806x||TARGET_qualcommax||TARGET_ipq50xx||TARGET_ipq50xx_32) \
   				 +libc \
   				 @BROKEN
   TITLE:=Kernel driver for NSS macsec
@@ -62,6 +62,9 @@ else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq60xx")
 	subtarget:=$(CONFIG_TARGET_SUBTARGET)
 else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx")
 	SOC=ipq50xx_64
+	subtarget:=$(CONFIG_TARGET_SUBTARGET)
+else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx_32")
+	SOC=ipq50xx_32
 	subtarget:=$(CONFIG_TARGET_SUBTARGET)
 endif
 

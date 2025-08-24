@@ -72,11 +72,14 @@ else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq60xx")
 else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx")
   SOC="ipq50xx_64"
   subtarget:=$(CONFIG_TARGET_SUBTARGET)
+else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx_32")
+  SOC="ipq50xx_32"
+  subtarget:=$(CONFIG_TARGET_SUBTARGET)
 else
   SOC=$(CONFIG_TARGET_BOARD)
 endif
 
-ifneq (, $(findstring $(subtarget), "ipq807x" "ipq807x_64" "ipq60xx" "ipq60xx_64" "ipq50xx" "ipq50xx_64"))
+ifneq (, $(findstring $(subtarget), "ipq807x" "ipq807x_64" "ipq60xx" "ipq60xx_64" "ipq50xx" "ipq50xx_64" "ipq50xx_32"))
 # DTLS Manager v2.0 for Hawkeye/Cypress
   DTLSMGR_DIR:=v2.0
 # IPsec Manager v2.0 for Hawkeye/Cypress
@@ -379,7 +382,7 @@ define KernelPackage/qca-nss-drv-qdisc
 	   +kmod-qca-nss-drv \
 	   +@NSS_DRV_SHAPER_ENABLE \
 	   +@NSS_DRV_IGS_ENABLE \
-	   +!TARGET_qualcommax_ipq50xx:kmod-qca-nss-drv-bridge-mgr
+	   +!TARGET_qualcommax_ipq50xx:kmod-qca-nss-drv-bridge-mgr +!TARGET_qualcommax_ipq50xx_32:kmod-qca-nss-drv-bridge-mgr
   FILES:=$(PKG_BUILD_DIR)/nss_qdisc/qca-nss-qdisc.ko
   KCONFIG:=CONFIG_NET_CLS_ACT=y
 endef
