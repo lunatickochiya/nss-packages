@@ -73,8 +73,8 @@ else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx")
   SOC="ipq50xx_64"
   subtarget:=$(CONFIG_TARGET_SUBTARGET)
 else ifeq ($(CONFIG_TARGET_SUBTARGET), "ipq50xx_32")
-  SOC="ipq50xx_32"
-  subtarget:=$(CONFIG_TARGET_SUBTARGET)
+  SOC="ipq50xx"
+  subtarget:="ipq50xx"
 else
   SOC=$(CONFIG_TARGET_BOARD)
 endif
